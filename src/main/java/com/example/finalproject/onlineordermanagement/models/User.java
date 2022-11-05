@@ -3,6 +3,8 @@ package com.example.finalproject.onlineordermanagement.models;
 import com.example.finalproject.onlineordermanagement.enums.UserType;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="users")
 public class User {
@@ -19,15 +21,20 @@ public class User {
     @Enumerated(EnumType.ORDINAL)
     private UserType userType;
 
+    @OneToMany(mappedBy = "user")
+    private List<Order> orderList;
+
     public User(){
         
     }
-    public User(Long id, String name, String email, String password, UserType userType) {
+    
+    public User(Long id, String name, String email, String password, UserType userType, List<Order> orderList) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.userType = userType;
+        this.orderList = orderList;
     }
 
     public Long getId() {
@@ -68,5 +75,13 @@ public class User {
 
     public void setUserType(UserType userType) {
         this.userType = userType;
+    }
+
+    public List<Order> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<Order> orderList) {
+        this.orderList = orderList;
     }
 }
