@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -24,10 +24,10 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Order> orderList;
 
-    public User(){
-        
+    public User() {
+
     }
-    
+
     public User(Long id, String name, String email, String password, UserType userType, List<Order> orderList) {
         this.id = id;
         this.name = name;
