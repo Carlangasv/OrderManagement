@@ -1,4 +1,4 @@
-package com.example.finalproject.onlineordermanagement.service;
+package com.example.finalproject.onlineordermanagement.services;
 
 import com.example.finalproject.onlineordermanagement.models.User;
 

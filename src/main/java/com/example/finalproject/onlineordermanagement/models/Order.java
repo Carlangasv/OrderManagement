@@ -1,11 +1,19 @@
 package com.example.finalproject.onlineordermanagement.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "orders")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Order {
 
     @Id
@@ -17,4 +25,9 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User owner;
+
+    public Order(Date creationDate, User owner) {
+        this.creationDate = creationDate;
+        this.owner = owner;
+    }
 }
