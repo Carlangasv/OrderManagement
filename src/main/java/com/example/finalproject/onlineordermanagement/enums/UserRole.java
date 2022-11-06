@@ -1,5 +1,5 @@
 package com.example.finalproject.onlineordermanagement.enums;
 
-public enum UserType {
-    user, admin
+public enum UserRole {
+   ROLE_USER, ROLE_ADMIN
 }

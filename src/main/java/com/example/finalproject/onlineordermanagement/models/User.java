@@ -1,6 +1,6 @@
 package com.example.finalproject.onlineordermanagement.models;
 
-import com.example.finalproject.onlineordermanagement.enums.UserType;
+import com.example.finalproject.onlineordermanagement.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,14 +20,11 @@ public class User {
     @Id
     private Long id;
 
-    private String name;
-
-    private String email;
+    private String username;
 
     private String password;
 
-    @Enumerated(EnumType.ORDINAL)
-    private UserType userType;
+    private String roles;
 
     @OneToMany(mappedBy = "owner")
     private List<Order> orderList;

@@ -1,21 +1,17 @@
 package com.example.finalproject.onlineordermanagement.dtos;
 
-import com.example.finalproject.onlineordermanagement.enums.UserType;
-import com.example.finalproject.onlineordermanagement.models.Order;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-
-import java.util.List;
 
 @Data
 public class UserDto {
 
-    @JsonProperty("name")
-    private String name;
+    @JsonProperty("userName")
+    private String username;
 
-    @JsonProperty("email")
-    private String email;
+    @JsonProperty("userRole")
+    private String roles;
 
-    @JsonProperty("userType")
-    private UserType userType;
+    @JsonProperty("password")
+    private String password;
 }

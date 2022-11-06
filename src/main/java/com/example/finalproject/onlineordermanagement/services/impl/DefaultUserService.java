@@ -28,11 +28,6 @@ public class DefaultUserService implements UserService {
     }
 
     @Override
-    public User getUserByEmail(String email) {
-        return getUserRepository().findUserByEmail(email);
-    }
-
-    @Override
     public User saveUser(User newUser) {
         return getUserRepository().save(newUser);
     }
