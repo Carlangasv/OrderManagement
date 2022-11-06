@@ -1,6 +1,6 @@
 package com.example.finalproject.onlineordermanagement.interceptors;
 
-import com.example.finalproject.onlineordermanagement.Exceptions.TooManyRequestException;
+import com.example.finalproject.onlineordermanagement.exceptions.TooManyRequestException;
 import io.github.bucket4j.Bandwidth;
 import io.github.bucket4j.Bucket;
 import io.github.bucket4j.Bucket4j;

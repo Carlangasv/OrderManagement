@@ -6,21 +6,15 @@ import com.example.finalproject.onlineordermanagement.models.Order;
 import com.example.finalproject.onlineordermanagement.models.SecurityUser;
 import com.example.finalproject.onlineordermanagement.services.OrderService;
 import com.example.finalproject.onlineordermanagement.services.UserService;
-import io.github.bucket4j.Bandwidth;
-import io.github.bucket4j.Bucket;
-import io.github.bucket4j.Bucket4j;
-import io.github.bucket4j.Refill;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Duration;
 import java.util.List;
 
 @RestController
@@ -44,6 +38,7 @@ public class OrderController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping
+    @Cacheable
     public ResponseEntity<?> getOrders() {
         return ResponseEntity.ok(orderService.getOrders().stream().map(orderMapper::orderToOrderDto).toList());
     }
