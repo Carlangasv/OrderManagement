@@ -3,6 +3,7 @@ package com.example.finalproject.onlineordermanagement.controllers;
 import com.example.finalproject.onlineordermanagement.dtos.UserDto;
 import com.example.finalproject.onlineordermanagement.mappers.UserMapper;
 import com.example.finalproject.onlineordermanagement.services.UserService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +21,8 @@ public class UserController {
         this.userService = userService;
         this.userMapper = userMapper;
     }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
 
     @GetMapping
     public List<UserDto> getUsers(){

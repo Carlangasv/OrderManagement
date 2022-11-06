@@ -4,6 +4,7 @@ import com.example.finalproject.onlineordermanagement.dtos.ProductDto;
 import com.example.finalproject.onlineordermanagement.mappers.ProductMapper;
 import com.example.finalproject.onlineordermanagement.models.Product;
 import com.example.finalproject.onlineordermanagement.services.ProductService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +21,8 @@ public class ProductController {
         this.productService = productService;
         this.productMapper = productMapper;
     }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
 
     @GetMapping
     public List<ProductDto> getProducts() {
