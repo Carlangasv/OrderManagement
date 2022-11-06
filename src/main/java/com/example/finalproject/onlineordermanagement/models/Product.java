@@ -21,9 +21,15 @@ public class Product {
 
     private String name;
 
-    private String price;
+    private Long price;
 
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;
+
+    public Product(String name, Long price, Order order) {
+        this.name = name;
+        this.price = price;
+        this.order = order;
+    }
 }

@@ -27,7 +27,7 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User owner;
 
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.ALL})
     private List<Product> productList;
 
     public Order(Date creationDate, User owner) {

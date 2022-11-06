@@ -1,5 +1,7 @@
 package com.example.finalproject.onlineordermanagement.controllers;
 
+import com.example.finalproject.onlineordermanagement.dtos.OrderDto;
+import com.example.finalproject.onlineordermanagement.mappers.OrderMapper;
 import com.example.finalproject.onlineordermanagement.models.Order;
 import com.example.finalproject.onlineordermanagement.services.OrderService;
 import org.springframework.web.bind.annotation.*;
@@ -12,27 +14,30 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    public OrderController(OrderService orderService) {
+    private final OrderMapper orderMapper;
+
+    public OrderController(OrderService orderService, OrderMapper orderMapper) {
         this.orderService = orderService;
+        this.orderMapper = orderMapper;
     }
 
     @GetMapping
-    public List<Order> getOrders(){
-        return orderService.getOrders();
+    public List<OrderDto> getOrders() {
+        return orderService.getOrders().stream().map(orderMapper::orderToOrderDto).toList();
     }
 
     @GetMapping("/{orderId}")
-    public Order getOrderById(@PathVariable("orderId") Long orderId){
-        return orderService.getOrderById(orderId);
+    public OrderDto getOrderById(@PathVariable("orderId") Long orderId) {
+        return orderMapper.orderToOrderDto(orderService.getOrderById(orderId));
     }
 
     @PostMapping
-    public Order saveOrder(@RequestBody Order order){
-        return orderService.saveOrder(order);
+    public OrderDto saveOrder(@RequestBody Order order) {
+        return orderMapper.orderToOrderDto(orderService.saveOrder(order));
     }
 
     @DeleteMapping("/{orderId}")
-    public void deleteOrder(@PathVariable("orderId") Long orderId){
+    public void deleteOrder(@PathVariable("orderId") Long orderId) {
         orderService.removeOrder(orderId);
     }
 }

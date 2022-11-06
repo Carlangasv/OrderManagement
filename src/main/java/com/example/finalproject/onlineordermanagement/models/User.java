@@ -26,6 +26,6 @@ public class User {
 
     private String roles;
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner", cascade = {CascadeType.ALL})
     private List<Order> orderList;
 }
