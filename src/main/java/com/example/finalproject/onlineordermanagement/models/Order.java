@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -25,6 +26,9 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User owner;
+
+    @OneToMany
+    private List<Product> productList;
 
     public Order(Date creationDate, User owner) {
         this.creationDate = creationDate;
