@@ -26,11 +26,15 @@ public class SecurityUser implements UserDetails {
         return user.getPassword();
     }
 
+    public Long getId() {
+        return user.getId();
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Arrays.stream(user
-                .getRoles()
-                .split(","))
+                        .getRoles()
+                        .split(","))
                 .map(SimpleGrantedAuthority::new)
                 .toList();
     }

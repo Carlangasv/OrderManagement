@@ -16,9 +16,6 @@ public class OrderDto {
     @JsonProperty("creationDate")
     private Date creationDate;
 
-    @JsonProperty("owner")
-    private UserDto owner;
-
     @JsonProperty("products")
     private List<ProductDto> productList;
 }
