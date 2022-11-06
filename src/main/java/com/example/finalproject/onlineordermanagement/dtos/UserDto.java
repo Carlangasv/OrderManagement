@@ -12,6 +12,4 @@ public class UserDto {
     @JsonProperty("userRole")
     private String roles;
 
-    @JsonProperty("password")
-    private String password;
 }

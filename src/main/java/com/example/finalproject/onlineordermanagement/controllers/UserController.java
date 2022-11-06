@@ -2,7 +2,6 @@ package com.example.finalproject.onlineordermanagement.controllers;
 
 import com.example.finalproject.onlineordermanagement.dtos.UserDto;
 import com.example.finalproject.onlineordermanagement.mappers.UserMapper;
-import com.example.finalproject.onlineordermanagement.models.User;
 import com.example.finalproject.onlineordermanagement.services.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
