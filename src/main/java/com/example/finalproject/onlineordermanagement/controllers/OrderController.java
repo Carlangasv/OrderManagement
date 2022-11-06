@@ -32,7 +32,6 @@ public class OrderController {
 
     private final OrderMapper orderMapper;
 
-    private final Bucket bucket;
 
     private final UserService userService;
 
@@ -40,20 +39,13 @@ public class OrderController {
         this.orderService = orderService;
         this.orderMapper = orderMapper;
         this.userService = userService;
-        Bandwidth limit = Bandwidth.classic(3, Refill.greedy(3, Duration.ofMinutes(1)));
-        this.bucket = Bucket4j.builder()
-                .addLimit(limit)
-                .build();
+
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping
     public ResponseEntity<?> getOrders() {
-        if (bucket.tryConsume(1)) {
-            return ResponseEntity.ok(orderService.getOrders().stream().map(orderMapper::orderToOrderDto).toList());
-        } else {
-            return ResponseEntity.status(HttpStatusCode.valueOf(412)).body("Too much request");
-        }
+        return ResponseEntity.ok(orderService.getOrders().stream().map(orderMapper::orderToOrderDto).toList());
     }
 
     @GetMapping("/my-orders")
