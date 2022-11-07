@@ -23,7 +23,6 @@ public class UserController {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-
     @GetMapping
     public List<UserDto> getUsers(){
         return getUserService().getUsers().stream().map(userMapper::userToUserDto).toList();

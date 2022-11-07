@@ -28,4 +28,7 @@ public class User {
 
     @OneToMany(mappedBy = "owner", cascade = {CascadeType.ALL})
     private List<Order> orderList;
+    public User(Long id) {
+        this.id = id;
+    }
 }

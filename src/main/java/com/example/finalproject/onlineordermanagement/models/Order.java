@@ -34,4 +34,8 @@ public class Order {
         this.creationDate = creationDate;
         this.owner = owner;
     }
+
+    public Order(List<Product> productList) {
+        this.productList = productList;
+    }
 }

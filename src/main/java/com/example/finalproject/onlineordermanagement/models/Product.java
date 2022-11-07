@@ -37,4 +37,7 @@ public class Product {
         this.name = name;
         this.price = price;
     }
+    public Product(Long id) {
+        this.id = id;
+    }
 }
