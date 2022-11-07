@@ -10,9 +10,5 @@ public interface ProductService {
 
     Product getProductById(Long productId);
 
-    Product getProductByName(String productName);
-
     Product saveProduct(Product newProduct);
-
-    void removeProduct(Long productId);
 }

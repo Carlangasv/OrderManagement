@@ -28,17 +28,8 @@ public class DefaultProductService implements ProductService {
     }
 
     @Override
-    public Product getProductByName(String productName) {
-        return productRepository.getProductByName(productName);
-    }
-
-    @Override
     public Product saveProduct(Product newProduct) {
         return productRepository.save(newProduct);
     }
 
-    @Override
-    public void removeProduct(Long productId) {
-        productRepository.deleteById(productId);
-    }
 }

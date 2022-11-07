@@ -23,16 +23,20 @@ public class SecurityConfiguration {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests(auth -> auth.requestMatchers("/*")
-                .permitAll()
-                .anyRequest()
-                .authenticated())
-                .userDetailsService(userDetailsService)
-                .httpBasic(Customizer.withDefaults())
-                .build();
+                        .permitAll()
+                        .anyRequest()
+                        .authenticated())
+                        .userDetailsService(userDetailsService)
+                        .httpBasic(Customizer.withDefaults())
+                        .cors()
+                        .and()
+                        .csrf()
+                        .disable()
+                        .build();
     }
 
     @Bean
-    PasswordEncoder passwordEncoder(){
+    PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

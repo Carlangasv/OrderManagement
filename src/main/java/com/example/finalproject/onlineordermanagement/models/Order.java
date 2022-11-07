@@ -23,7 +23,7 @@ public class Order {
 
     private Date creationDate;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "user_id")
     private User owner;
 

@@ -22,30 +22,20 @@ public class ProductController {
         this.productMapper = productMapper;
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping
     public List<ProductDto> getProducts() {
         return productService.getProducts().stream().map(productMapper::productToProductDto).toList();
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/{productId}")
     public ProductDto getProductById(@PathVariable("productId") Long productId) {
         return productMapper.productToProductDto(productService.getProductById(productId));
     }
 
-    @RequestMapping("/name/{productName}")
-    public ProductDto getProductByName(@PathVariable("productName") String productName) {
-        return productMapper.productToProductDto(productService.getProductByName(productName));
-    }
-
     @PostMapping
     public ProductDto saveProduct(@RequestBody Product product) {
         return productMapper.productToProductDto(productService.saveProduct(product));
-    }
-
-    @DeleteMapping("/{productId}")
-    public void removeProduct(@PathVariable("productId") Long productId) {
-        productService.removeProduct(productId);
     }
 }

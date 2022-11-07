@@ -26,7 +26,6 @@ public class OrderController {
 
     private final OrderMapper orderMapper;
 
-
     private final UserService userService;
 
     public OrderController(OrderService orderService, OrderMapper orderMapper, UserService userService) {
@@ -39,10 +38,11 @@ public class OrderController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping
     @Cacheable
-    public ResponseEntity<?> getOrders() {
-        return ResponseEntity.ok(orderService.getOrders().stream().map(orderMapper::orderToOrderDto).toList());
+    public List<OrderDto> getOrders() {
+        return orderService.getOrders().stream().map(orderMapper::orderToOrderDto).toList();
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/my-orders")
     @CachePut
     public List<OrderDto> getOrderById() {
@@ -50,12 +50,14 @@ public class OrderController {
         return userService.getUserById(securityUser.getId()).getOrderList().stream().map(orderMapper::orderToOrderDto).toList();
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @PostMapping
-    @CacheEvict(value = "addresses", allEntries = true)
+    @CacheEvict(value = "orders", allEntries = true)
     public OrderDto saveOrder(@RequestBody Order order) {
         return orderMapper.orderToOrderDto(orderService.saveOrder(order));
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{orderId}")
     public void deleteOrder(@PathVariable("orderId") Long orderId) {
         orderService.removeOrder(orderId);
