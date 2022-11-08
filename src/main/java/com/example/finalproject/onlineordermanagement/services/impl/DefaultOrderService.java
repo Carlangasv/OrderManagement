@@ -21,12 +21,10 @@ public class DefaultOrderService implements OrderService {
 
     private final UserService userService;
 
-    private final ProductService productService;
 
-    public DefaultOrderService(OrderRepository orderRepository, UserService userService, ProductService productService) {
+    public DefaultOrderService(OrderRepository orderRepository, UserService userService) {
         this.orderRepository = orderRepository;
         this.userService = userService;
-        this.productService = productService;
     }
 
     @Override
