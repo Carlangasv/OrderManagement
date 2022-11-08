@@ -16,7 +16,7 @@ public class ControllersInterceptor implements HandlerInterceptor {
     private final Bucket bucket;
 
     public ControllersInterceptor() {
-        Bandwidth limit = Bandwidth.classic(40, Refill.greedy(40, Duration.ofMinutes(1)));
+        Bandwidth limit = Bandwidth.classic(5, Refill.greedy(5, Duration.ofMinutes(1)));
         this.bucket = Bucket4j.builder()
                 .addLimit(limit)
                 .build();
