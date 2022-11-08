@@ -34,6 +34,7 @@ public class ProductController {
         return productMapper.productToProductDto(productService.getProductById(productId));
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
     public ProductDto saveProduct(@RequestBody Product product) {
         return productMapper.productToProductDto(productService.saveProduct(product));
